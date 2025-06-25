@@ -129,8 +129,8 @@ export default function Component() {
     {
       title: "Red Bull Creation",
       category: "Film",
-      image: "/portfolio/rb-creations-00.jpg",
-      images: ["/portfolio/rb-creations-00.jpg"],
+      image: "/portfolio/RB-creations-00.jpg",
+      images: ["/portfolio/RB-creations-00.jpg"],
       description: "Concept boards for Red Bull's Creation series, featuring maker's from around the US",
     },
   ]
