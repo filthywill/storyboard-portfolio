@@ -19,7 +19,7 @@ const storyboardImages = [
 export default function StoryboardSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
-  const [scalingImages, setScalingImages] = useState<Set<number>>(new Set([0]))
+  const [scalingImages, setScalingImages] = useState<Set<number>>(new Set())
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set())
   const [isInitialLoad, setIsInitialLoad] = useState(true)
 
@@ -43,11 +43,8 @@ export default function StoryboardSlideshow() {
 
       await Promise.all(preloadPromises)
       setIsInitialLoad(false)
-      
-      // Start scaling the first image when slideshow begins (with small delay for smooth transition)
-      setTimeout(() => {
-        setScalingImages(prev => new Set(prev).add(0))
-      }, 100)
+      // Start scaling the first image immediately
+      setScalingImages(new Set([0]))
     }
 
     preloadImages()
@@ -112,10 +109,10 @@ export default function StoryboardSlideshow() {
         <div
           key={index}
           className={`absolute inset-0 transition-opacity ease-in-out ${
-            index === currentIndex && !isInitialLoad ? "opacity-100" : "opacity-0"
+            index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            transitionDuration: "2000ms",
+            transitionDuration: index === 0 ? "0ms" : "2000ms",
           }}
         >
           <Image
