@@ -43,6 +43,11 @@ export default function StoryboardSlideshow() {
 
       await Promise.all(preloadPromises)
       setIsInitialLoad(false)
+      
+      // Start scaling the first image when slideshow begins (with small delay for smooth transition)
+      setTimeout(() => {
+        setScalingImages(prev => new Set(prev).add(0))
+      }, 100)
     }
 
     preloadImages()
