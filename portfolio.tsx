@@ -351,6 +351,10 @@ export default function Component() {
                           ? "w-full h-full object-cover object-center scale-150 group-hover:scale-[1.65] transition-transform duration-300"
                           : "w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       }
+                      priority={index < 3}
+                      loading={index < 3 ? "eager" : "lazy"}
+                      quality={85}
+                      sizes="(max-width: 525px) 100vw, (max-width: 768px) 50vw, 33vw"
                     />
                   </div>
                   <CardHeader className="p-4 md:p-5">
@@ -434,6 +438,9 @@ export default function Component() {
                 fill
                 className="object-contain"
                 onClick={(e) => e.stopPropagation()}
+                priority
+                quality={90}
+                sizes="100vw"
               />
 
               {/* Invisible click areas for mobile navigation */}
@@ -689,7 +696,7 @@ export default function Component() {
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center space-x-2">
-              <Image src="/logo.png" alt="Will Samatis Logo" width={48} height={48} className="rounded-md" />
+              <Image src="/logo.svg" alt="Will Samatis Logo" width={48} height={48} className="rounded-md" />
               <span className="font-bold text-xl">Will Samatis</span>
             </div>
 

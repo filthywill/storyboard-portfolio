@@ -20,9 +20,48 @@ export default function StoryboardSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const [scalingImages, setScalingImages] = useState<Set<number>>(new Set([0]))
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set())
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
+
+  // Preload the first few images immediately
+  useEffect(() => {
+    const preloadImages = async () => {
+      // Preload first 3 images for immediate display
+      const imagesToPreload = storyboardImages.slice(0, 3)
+      
+      const preloadPromises = imagesToPreload.map((image, index) => {
+        return new Promise((resolve) => {
+          const img = new window.Image()
+          img.onload = () => {
+            setLoadedImages(prev => new Set(prev).add(index))
+            resolve(true)
+          }
+          img.onerror = () => resolve(false)
+          img.src = image.src
+        })
+      })
+
+      await Promise.all(preloadPromises)
+      setIsInitialLoad(false)
+    }
+
+    preloadImages()
+  }, [])
+
+  // Preload next image when current image changes
+  useEffect(() => {
+    const nextIndex = (currentIndex + 1) % storyboardImages.length
+    if (!loadedImages.has(nextIndex)) {
+      const img = new window.Image()
+      img.onload = () => {
+        setLoadedImages(prev => new Set(prev).add(nextIndex))
+      }
+      img.src = storyboardImages[nextIndex].src
+    }
+  }, [currentIndex, loadedImages])
 
   useEffect(() => {
-    if (!isHovered) {
+    if (!isHovered && !isInitialLoad) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) => {
           const nextIndex = prevIndex + 1 >= storyboardImages.length ? 0 : prevIndex + 1
@@ -45,7 +84,7 @@ export default function StoryboardSlideshow() {
 
       return () => clearInterval(interval)
     }
-  }, [isHovered])
+  }, [isHovered, isInitialLoad])
 
   return (
     <div
@@ -53,11 +92,22 @@ export default function StoryboardSlideshow() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Loading placeholder for initial load */}
+      {isInitialLoad && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted">
+          <div className="animate-pulse flex space-x-2">
+            <div className="w-3 h-3 bg-muted-foreground/30 rounded-full animate-bounce"></div>
+            <div className="w-3 h-3 bg-muted-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+            <div className="w-3 h-3 bg-muted-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          </div>
+        </div>
+      )}
+
       {storyboardImages.map((image, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity ease-in-out ${
-            index === currentIndex ? "opacity-100" : "opacity-0"
+            index === currentIndex && !isInitialLoad ? "opacity-100" : "opacity-0"
           }`}
           style={{
             transitionDuration: "2000ms",
@@ -74,6 +124,11 @@ export default function StoryboardSlideshow() {
               transitionDuration: scalingImages.has(index) ? "4500ms" : "0ms",
             }}
             priority={index === 0}
+            loading={index < 3 ? "eager" : "lazy"}
+            quality={85}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
         </div>
       ))}
