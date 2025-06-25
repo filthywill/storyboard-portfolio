@@ -112,7 +112,7 @@ export default function StoryboardSlideshow() {
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            transitionDuration: index === 0 ? "0ms" : "2000ms",
+            transitionDuration: index === 0 && currentIndex === 0 ? "0ms" : "2000ms",
           }}
         >
           <Image
