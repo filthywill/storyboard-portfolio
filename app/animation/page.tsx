@@ -298,10 +298,6 @@ export default function AnimationPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Debug info */}
-      <div className="fixed top-20 right-4 bg-black text-white p-2 rounded z-50">
-        Hovered: {hoveredProject || 'none'}
-      </div>
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container max-w-[1025px] mx-auto px-4 flex h-16 items-center justify-between">
