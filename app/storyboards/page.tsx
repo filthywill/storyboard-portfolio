@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import {
   Mail,
   Phone,
@@ -263,12 +264,16 @@ export default function StoryboardsPage() {
             <Link href="#contact" className="hover:text-primary transition-colors">
               Contact
             </Link>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -496,9 +501,9 @@ export default function StoryboardsPage() {
                       e.stopPropagation()
                       goToImage(index)
                     }}
-                    className={`w-4 h-4 md:w-3 md:h-3 rounded-full transition-all touch-manipulation ${
-                      index === currentImageIndex ? "bg-white scale-110" : "bg-white/50 hover:bg-white/75"
-                    }`}
+                                         className={`w-4 h-4 md:w-3 md:h-3 rounded-full transition-all touch-manipulation ${
+                       index === currentImageIndex ? "bg-foreground scale-110" : "bg-foreground/50 hover:bg-foreground/75"
+                     }`}
                   />
                 ))}
               </div>

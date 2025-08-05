@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import {
   Mail,
   Phone,
@@ -338,12 +339,16 @@ export default function AnimationPage() {
             <Link href="#contact" className="hover:text-primary transition-colors">
               Contact
             </Link>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -482,7 +487,7 @@ export default function AnimationPage() {
          <div className="container max-w-[1025px] mx-auto px-4">
            <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
                           <div className="text-center space-y-2 mb-6 mt-2">
-                <Badge variant="outline" className="bg-white px-4 py-1 text-xl">
+                <Badge variant="outline" className="px-4 py-1 text-xl">
                   Motion Graphics Design
                 </Badge>
             
@@ -545,7 +550,7 @@ export default function AnimationPage() {
          <div className="container max-w-[1025px] mx-auto px-4">
            <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
              <div className="text-center space-y-2 mb-6 mt-2">
-               <Badge variant="outline" className="bg-white px-4 py-1 text-xl">
+               <Badge variant="outline" className="px-4 py-1 text-xl">
                  Animation Production
                </Badge>
              </div>
@@ -606,7 +611,7 @@ export default function AnimationPage() {
          <div className="container max-w-[1025px] mx-auto px-4">
            <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
                           <div className="text-center space-y-2 mb-6 mt-2">
-                <Badge variant="outline" className="bg-white px-4 py-1 text-xl">
+                <Badge variant="outline" className="px-4 py-1 text-xl">
                   Visual Effects Production
                 </Badge>
             
@@ -785,9 +790,9 @@ export default function AnimationPage() {
                       e.stopPropagation()
                       goToImage(index)
                     }}
-                    className={`w-4 h-4 md:w-3 md:h-3 rounded-full transition-all touch-manipulation ${
-                      index === currentImageIndex ? "bg-white scale-110" : "bg-white/50 hover:bg-white/75"
-                    }`}
+                                         className={`w-4 h-4 md:w-3 md:h-3 rounded-full transition-all touch-manipulation ${
+                       index === currentImageIndex ? "bg-foreground scale-110" : "bg-foreground/50 hover:bg-foreground/75"
+                     }`}
                   />
                 ))}
               </div>

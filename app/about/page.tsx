@@ -4,6 +4,7 @@ import type React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import {
   ArrowRight,
   Menu,
@@ -40,12 +41,16 @@ export default function AboutPage() {
             <Link href="#contact" className="hover:text-primary transition-colors">
               Contact
             </Link>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -85,7 +90,7 @@ export default function AboutPage() {
       <section className="relative py-6 md:py-6 pb-4 md:pb-4 overflow-hidden">
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="text-center space-y-3">
-          <Badge variant="outline" className="bg-white">About Me</Badge>
+                     <Badge variant="outline">About Me</Badge>
             <h1 className="text-4xl md:text-4xl font-bold tracking-tight">
               Artist and Motion Designer
             </h1>
