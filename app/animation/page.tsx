@@ -200,7 +200,7 @@ export default function AnimationPage() {
     },
     {
       title: "Holiday Card",
-      category: "Animation Production",
+      category: "2D Animation",
       image: "https://vumbnail.com/1107508650.jpg?v=" + Date.now(),
       images: ["https://vumbnail.com/1107508650.jpg?v=" + Date.now()],
       previewVideo: "/videos/holiday-card-preview.mp4",
@@ -945,30 +945,6 @@ export default function AnimationPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-12">
-        <div className="container max-w-[1025px] mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center space-x-2">
-              <Image src="/logo.svg" alt="Will Samatis Logo" width={48} height={48} className="rounded-md" />
-              <span className="font-bold text-xl">Will Samatis</span>
-            </div>
-
-            <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Will Samatis. All rights reserved.
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Link href="#" className="text-sm hover:text-primary transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-sm hover:text-primary transition-colors">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 } 

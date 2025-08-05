@@ -90,7 +90,7 @@ export default function AboutPage() {
               Artist and Motion Designer
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Storyboard Design 〡 Motion Graphics 〡 Character Animation 〡 Visual Effects
+              Storyboard Design 〡 Motion Graphics 〡 Animation Production 〡 Visual Effects
             </p>
           </div>
         </div>
@@ -201,25 +201,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-12">
-        <div className="container max-w-[1025px] mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Will Samatis. All rights reserved.
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Link href="#" className="text-sm hover:text-primary transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-sm hover:text-primary transition-colors">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 } 
