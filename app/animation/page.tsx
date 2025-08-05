@@ -91,7 +91,7 @@ export default function AnimationPage() {
       images: ["https://vumbnail.com/1107190955.jpg?v=" + Date.now()],
       previewVideo: "/videos/innovation-preview.mp4",
       video: "https://player.vimeo.com/video/1107190955?badge=0&autopause=0&player_id=0&app_id=58479",
-      description: "A design piece using the movement of shapes and text to tell a story on brand for The Andover Companies.",
+      description: "A design piece using the movement of shapes and text to tell a story.",
     },
     {
       title: "Under Armour Fit Series",
@@ -134,7 +134,7 @@ export default function AnimationPage() {
       images: ["https://vumbnail.com/1107215919.jpg?v=" + Date.now()],
       previewVideo: "/videos/womens-fit-collection-preview.mp4",
       video: "https://player.vimeo.com/video/1107215919?badge=0&autopause=0&player_id=0&app_id=58479",
-      description: "Environmental effects and design, as well as 3D Modeling, compositing, and animation for product shots.",
+      description: "Environmental effects, as well as 3D Modeling, compositing, and animation.",
     },
     {
       title: "Promoboxx",
@@ -152,7 +152,7 @@ export default function AnimationPage() {
       images: ["/portfolio/bostons-got-wings.jpg"],
       previewVideo: "/videos/bostons-got-wings-preview.mp4",
       video: "https://player.vimeo.com/video/92287203?badge=0&autopause=0&player_id=0&app_id=58479",
-      description: "Kinetic type and motion graphics design to promote BGW progress.",
+      description: "Kinetic type and motion graphics design to promote BGW.",
     },
     {
       title: "Surface Pro",
@@ -173,7 +173,7 @@ export default function AnimationPage() {
     },
     {
       title: "Walker Bot",
-      category: "2D Animation",
+      category: "3D Animation",
       image: "https://vumbnail.com/38568243.jpg?v=" + Date.now(),
       images: ["https://vumbnail.com/38568243.jpg?v=" + Date.now()],
       previewVideo: "/videos/walker-bot-preview.mp4",
@@ -188,6 +188,15 @@ export default function AnimationPage() {
       previewVideo: "/videos/earn-it-preview.mp4",
       video: "https://player.vimeo.com/video/1107450631?badge=0&autopause=0&player_id=0&app_id=58479",
       description: "Music video produced for Jassby to promote their finance app.",
+    },
+    {
+      title: "Do the KIND Thing",
+      category: "Motion Graphics",
+      image: "/portfolio/KIND-thumb.jpg",
+      images: ["/portfolio/KIND-thumb.jpg"],
+      previewVideo: "/videos/kind-thing-preview.mp4",
+      video: "https://player.vimeo.com/video/1107491496?badge=0&autopause=0&player_id=0&app_id=58479",
+      description: "Typography animation supplementing live footage.",
     },
 
   ]
@@ -397,7 +406,7 @@ export default function AnimationPage() {
       </section>
 
       {/* Animation Portfolio Section */}
-      <section id="portfolio" className="pt-8 pb-4">
+             <section id="portfolio" className="pt-4 pb-2">
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
             <div className="text-center space-y-2 mb-6 mt-2">
@@ -405,8 +414,8 @@ export default function AnimationPage() {
               <h2 className="text-2xl md:text-3xl font-bold">Featured Animations</h2>
             </div>
 
-                                                   <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-8">
-                {[animationItems[0], animationItems[4], animationItems[2]].map((item, index) => (
+                                                                <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
+               {[animationItems[0], animationItems[4], animationItems[2]].map((item, index) => (
                  <Card key={index} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                    <div
                      className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
@@ -460,7 +469,7 @@ export default function AnimationPage() {
       </section>
 
              {/* Motion Graphics Design Section */}
-       <section id="motion-graphics" className="pt-2 pb-4">
+       <section id="motion-graphics" className="pt-1 pb-2">
          <div className="container max-w-[1025px] mx-auto px-4">
            <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
                           <div className="text-center space-y-2 mb-6 mt-2">
@@ -470,8 +479,8 @@ export default function AnimationPage() {
             
              </div>
 
-                         <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-8">
-               {[animationItems[5], animationItems[7], animationItems[6]].map((item, index) => (
+                         <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+               {[animationItems[5], animationItems[7], animationItems[6], animationItems[11]].map((item, index) => (
                  <Card key={index + 3} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                    <div
                      className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
@@ -507,19 +516,15 @@ export default function AnimationPage() {
                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                      />
                    </div>
-                  <CardHeader className="p-4 md:p-5">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary">{item.category}</Badge>
-                    </div>
-                    <CardTitle className="group-hover:text-primary transition-colors text-xl
-                  ">{item.title}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
+                  <CardHeader className="p-3 md:p-4">
+                    <CardTitle className="group-hover:text-primary transition-colors text-lg">{item.title}</CardTitle>
+                    <CardDescription className="text-xs">{item.description}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}
             </div>
 
-                         <div className="text-center mt-6">
+                         <div className="text-center mt-2">
  
              </div>
            </div>
@@ -527,16 +532,16 @@ export default function AnimationPage() {
        </section>
 
        {/* 2D Animation Section */}
-       <section id="2d-animation" className="pt-2 pb-4">
+       <section id="2d-animation" className="pt-1 pb-2">
          <div className="container max-w-[1025px] mx-auto px-4">
            <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
              <div className="text-center space-y-2 mb-6 mt-2">
                <Badge variant="outline" className="bg-white px-4 py-1 text-xl">
-                 2D Animation
+                 Animation Production
                </Badge>
              </div>
 
-             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-8">
+             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
                {[animationItems[10], animationItems[9], animationItems[8]].map((item, index) => (
                  <Card key={index + 9} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                    <div
@@ -588,7 +593,7 @@ export default function AnimationPage() {
        </section>
 
        {/* Visual Effects Production Section */}
-       <section id="visual-effects" className="pt-2 pb-12">
+       <section id="visual-effects" className="pt-1 pb-8">
          <div className="container max-w-[1025px] mx-auto px-4">
            <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
                           <div className="text-center space-y-2 mb-6 mt-2">
@@ -598,8 +603,8 @@ export default function AnimationPage() {
             
              </div>
 
-                          <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-8">
-                {[animationItems[3], animationItems[1]].map((item, index) => (
+                                       <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
+               {[animationItems[3], animationItems[1]].map((item, index) => (
                   <Card key={index + 3} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                     <div
                       className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
