@@ -321,7 +321,7 @@ export default function StoryboardsPage() {
                 <h1 className="text-4xl md:text-4xl font-bold tracking-tight">
                   Visual <span className="text-primary">Storytelling</span>
                 </h1>
-                <p className="text-xl">Helping directors and brands communicate their vision through drawings.</p>
+                <p className="text-xl">Helping studios and brands communicate their vision through drawings.</p>
                 <p className="text-md text-muted-foreground">
                 With a history in the film and animation industry, I'm familiar with production flows and have a strong understanding of film language. My experience has ranged from entertainment to commercial advertising.</p>
               </div>
