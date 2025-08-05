@@ -1,7 +1,5 @@
-"use client"
+import { redirect } from 'next/navigation'
 
-import Component from "@/portfolio"
-
-export default function Page() {
-  return <Component />
+export default function RootPage() {
+  redirect('/about')
 }

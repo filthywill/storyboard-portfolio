@@ -22,15 +22,16 @@ export default function StoryboardSlideshow() {
   const [scalingImages, setScalingImages] = useState<Set<number>>(new Set())
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set())
   const [isInitialLoad, setIsInitialLoad] = useState(true)
+  const [isReady, setIsReady] = useState(false)
 
-  // Preload the first few images immediately
+  // Preload images with better coordination
   useEffect(() => {
     const preloadImages = async () => {
-      // Preload first 3 images for immediate display
-      const imagesToPreload = storyboardImages.slice(0, 3)
+      // Preload first 4 images for smooth initial experience
+      const imagesToPreload = storyboardImages.slice(0, 4)
       
       const preloadPromises = imagesToPreload.map((image, index) => {
-        return new Promise((resolve) => {
+        return new Promise<boolean>((resolve) => {
           const img = new window.Image()
           img.onload = () => {
             setLoadedImages(prev => new Set(prev).add(index))
@@ -41,10 +42,16 @@ export default function StoryboardSlideshow() {
         })
       })
 
-      await Promise.all(preloadPromises)
-      setIsInitialLoad(false)
-      // Start scaling the first image immediately
-      setScalingImages(new Set([0]))
+      // Wait for at least the first image to load before starting animations
+      const results = await Promise.all(preloadPromises)
+      if (results[0]) { // First image loaded successfully
+        setIsInitialLoad(false)
+        setIsReady(true)
+        // Start scaling the first image after a brief delay to ensure smooth transition
+        setTimeout(() => {
+          setScalingImages(new Set([0]))
+        }, 100)
+      }
     }
 
     preloadImages()
@@ -52,6 +59,8 @@ export default function StoryboardSlideshow() {
 
   // Preload next image when current image changes
   useEffect(() => {
+    if (!isReady) return
+
     const nextIndex = (currentIndex + 1) % storyboardImages.length
     if (!loadedImages.has(nextIndex)) {
       const img = new window.Image()
@@ -60,33 +69,34 @@ export default function StoryboardSlideshow() {
       }
       img.src = storyboardImages[nextIndex].src
     }
-  }, [currentIndex, loadedImages])
+  }, [currentIndex, loadedImages, isReady])
 
+  // Main animation loop with better timing coordination
   useEffect(() => {
-    if (!isHovered && !isInitialLoad) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const nextIndex = prevIndex + 1 >= storyboardImages.length ? 0 : prevIndex + 1
+    if (!isReady || isHovered) return
 
-          // Start scaling the new image immediately
-          setScalingImages((prev) => new Set(prev).add(nextIndex))
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        const nextIndex = prevIndex + 1 >= storyboardImages.length ? 0 : prevIndex + 1
 
-          // Stop scaling the previous image after the fade transition completes
-          setTimeout(() => {
-            setScalingImages((prev) => {
-              const newSet = new Set(prev)
-              newSet.delete(prevIndex)
-              return newSet
-            })
-          }, 2000) // Match the fade transition duration
+        // Start scaling the new image with coordinated timing
+        setScalingImages((prev) => new Set(prev).add(nextIndex))
 
-          return nextIndex
-        })
-      }, 4500) // 4.5 seconds per image
+        // Stop scaling the previous image after the fade transition completes
+        setTimeout(() => {
+          setScalingImages((prev) => {
+            const newSet = new Set(prev)
+            newSet.delete(prevIndex)
+            return newSet
+          })
+        }, 2000) // Match the fade transition duration
 
-      return () => clearInterval(interval)
-    }
-  }, [isHovered, isInitialLoad])
+        return nextIndex
+      })
+    }, 4500) // 4.5 seconds per image
+
+    return () => clearInterval(interval)
+  }, [isHovered, isReady])
 
   return (
     <div
@@ -112,7 +122,7 @@ export default function StoryboardSlideshow() {
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            transitionDuration: index === 0 && currentIndex === 0 ? "0ms" : "2000ms",
+            transitionDuration: isInitialLoad ? "0ms" : "2000ms",
           }}
         >
           <Image
@@ -125,8 +135,8 @@ export default function StoryboardSlideshow() {
             style={{
               transitionDuration: scalingImages.has(index) ? "4500ms" : "0ms",
             }}
-            priority={index === 0}
-            loading={index < 3 ? "eager" : "lazy"}
+            priority={index < 4}
+            loading={index < 4 ? "eager" : "lazy"}
             quality={85}
             sizes="(max-width: 768px) 100vw, 50vw"
             placeholder="blur"
