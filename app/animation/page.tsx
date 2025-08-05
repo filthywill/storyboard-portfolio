@@ -169,7 +169,7 @@ export default function AnimationPage() {
       images: ["/portfolio/GORE-thumb.jpg"],
       previewVideo: "/videos/necro-gore-preview.mp4",
       video: "https://player.vimeo.com/video/62319684?badge=0&autopause=0&player_id=0&app_id=58479",
-      description: "Music video produced using 2D animation and design.",
+      description: "Music video produced using 2D animation.",
     },
     {
       title: "Walker Bot",
@@ -187,7 +187,7 @@ export default function AnimationPage() {
       images: ["https://vumbnail.com/1107450631.jpg?v=" + Date.now()],
       previewVideo: "/videos/earn-it-preview.mp4",
       video: "https://player.vimeo.com/video/1107450631?badge=0&autopause=0&player_id=0&app_id=58479",
-      description: "Music video produced for Jassby to promote their finance app.",
+      description: "Music video produced to promote the Jassby app.",
     },
     {
       title: "Do the KIND Thing",
@@ -197,6 +197,15 @@ export default function AnimationPage() {
       previewVideo: "/videos/kind-thing-preview.mp4",
       video: "https://player.vimeo.com/video/1107491496?badge=0&autopause=0&player_id=0&app_id=58479",
       description: "Typography animation supplementing live footage.",
+    },
+    {
+      title: "Holiday Card",
+      category: "Animation Production",
+      image: "https://vumbnail.com/1107508650.jpg?v=" + Date.now(),
+      images: ["https://vumbnail.com/1107508650.jpg?v=" + Date.now()],
+      previewVideo: "/videos/holiday-card-preview.mp4",
+      video: "https://player.vimeo.com/video/1107508650?badge=0&autopause=0&player_id=0&app_id=58479",
+      description: "Holiday card using 2D animation.",
     },
 
   ]
@@ -541,8 +550,8 @@ export default function AnimationPage() {
                </Badge>
              </div>
 
-             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
-               {[animationItems[10], animationItems[9], animationItems[8]].map((item, index) => (
+             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+               {[animationItems[10], animationItems[9], animationItems[8], animationItems[12]].map((item, index) => (
                  <Card key={index + 9} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                    <div
                      className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
