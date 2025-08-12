@@ -449,6 +449,12 @@ export default function AnimationPage() {
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                 />
+                {/* Animation Reel Label */}
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <Badge variant="outline" className="px-4 py-1 text-sm font-medium bg-background/95 backdrop-blur-sm border-border/50 rounded-md">
+                    Animation Reel
+                  </Badge>
+                </div>
               </div>
             </div>
           </div>
