@@ -208,6 +208,42 @@ export default function AnimationPage() {
       video: "https://player.vimeo.com/video/1107508650?badge=0&autopause=0&player_id=0&app_id=58479",
       description: "Holiday card using 2D animation.",
     },
+    {
+      title: "Jassby",
+      category: "Logo Animation",
+      image: "https://vumbnail.com/1109373008.jpg?v=" + Date.now(),
+      images: ["https://vumbnail.com/1109373008.jpg?v=" + Date.now()],
+      previewVideo: "/videos/jassby-logo-preview.mp4",
+      video: "https://player.vimeo.com/video/1109373008?badge=0&autopause=0&player_id=0&app_id=58479",
+      description: "Designed for and used as the Jassby brand identity.",
+    },
+    {
+      title: "TimePayment",
+      category: "Logo Animation",
+      image: "https://vumbnail.com/1109371431.jpg?v=" + Date.now(),
+      images: ["https://vumbnail.com/1109371431.jpg?v=" + Date.now()],
+      previewVideo: "/videos/timepayment-logo-preview.mp4",
+      video: "https://player.vimeo.com/video/1109371431?badge=0&autopause=0&player_id=0&app_id=58479",
+      description: "Designed for TimePayment media branding.",
+    },
+    {
+      title: "Coverys",
+      category: "Logo Animation",
+      image: "https://vumbnail.com/1109373843.jpg?v=" + Date.now(),
+      images: ["https://vumbnail.com/1109373843.jpg?v=" + Date.now()],
+      previewVideo: "/videos/coverys-logo-preview.mp4",
+      video: "https://player.vimeo.com/video/1109373843?badge=0&autopause=0&player_id=0&app_id=58479",
+      description: "Designed for Coverys marketing materials.",
+    },
+    {
+      title: "Modo Labs",
+      category: "Logo Animation",
+      image: "https://vumbnail.com/1109380828.jpg?v=" + Date.now(),
+      images: ["https://vumbnail.com/1109380828.jpg?v=" + Date.now()],
+      previewVideo: "/videos/modo-labs-logo-preview.mp4",
+      video: "https://player.vimeo.com/video/1109380828?badge=0&autopause=0&player_id=0&app_id=58479",
+      description: "Bumper created for Modo Labs.",
+    },
 
   ]
 
@@ -551,7 +587,7 @@ export default function AnimationPage() {
            <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
              <div className="text-center space-y-2 mb-6 mt-2">
                <Badge variant="outline" className="px-4 py-1 text-xl">
-                 Animation Production
+                 Animated Shorts
                </Badge>
              </div>
 
@@ -607,7 +643,7 @@ export default function AnimationPage() {
        </section>
 
        {/* Visual Effects Production Section */}
-       <section id="visual-effects" className="pt-1 pb-8">
+       <section id="visual-effects" className="pt-1 pb-2">
          <div className="container max-w-[1025px] mx-auto px-4">
            <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
                           <div className="text-center space-y-2 mb-6 mt-2">
@@ -660,6 +696,71 @@ export default function AnimationPage() {
                      </div>
                      <CardTitle className="group-hover:text-primary transition-colors text-xl
                    ">{item.title}</CardTitle>
+                     <CardDescription>{item.description}</CardDescription>
+                   </CardHeader>
+                 </Card>
+               ))}
+             </div>
+
+             <div className="text-center mt-6">
+ 
+             </div>
+           </div>
+         </div>
+       </section>
+
+       {/* Logo Animation Section */}
+       <section id="logo-animation" className="pt-1 pb-8">
+         <div className="container max-w-[1025px] mx-auto px-4">
+           <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
+             <div className="text-center space-y-2 mb-6 mt-2">
+               <Badge variant="outline" className="px-4 py-1 text-xl">
+                 Logo Animation
+               </Badge>
+             </div>
+
+             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+               {[animationItems[13], animationItems[14], animationItems[15], animationItems[16]].map((item, index) => (
+                 <Card key={index + 16} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                   <div
+                     className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
+                     onClick={() => openModal(item)}
+                     onMouseEnter={() => setHoveredProject(item.title)}
+                     onMouseLeave={() => setHoveredProject(null)}
+                   >
+                     {/* Video Preview */}
+                     {item.previewVideo && hoveredProject === item.title && (
+                       <video
+                         src={item.previewVideo}
+                         className="absolute inset-0 w-full h-full object-cover z-10"
+                         autoPlay
+                         muted
+                         loop
+                         playsInline
+                         preload="metadata"
+                       />
+                     )}
+                     
+                     {/* Fallback Image */}
+                     <Image
+                       src={item.image || "/placeholder.svg"}
+                       alt={item.title}
+                       width={400}
+                       height={300}
+                       className="w-full h-full object-cover"
+                       priority={index < 3}
+                       loading={index < 3 ? "eager" : "lazy"}
+                       quality={85}
+                       sizes="(max-width: 525px) 100vw, (max-width: 768px) 50vw, 33vw"
+                       placeholder="blur"
+                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                     />
+                   </div>
+                   <CardHeader className="p-4 md:p-5">
+                     <div className="flex items-center justify-between">
+                       <Badge variant="secondary">{item.category}</Badge>
+                     </div>
+                     <CardTitle className="group-hover:text-primary transition-colors text-xl">{item.title}</CardTitle>
                      <CardDescription>{item.description}</CardDescription>
                    </CardHeader>
                  </Card>
