@@ -87,8 +87,8 @@ export default function StoryboardsPage() {
     {
       title: "Red Bull BGW",
       category: "Film",
-      image: "/portfolio/bostons-got-wings.jpg",
-      images: ["/portfolio/bostons-got-wings.jpg"],
+      image: "/portfolio/BGW_panels_final_web.jpg",
+      images: ["/portfolio/BGW_panels_final_web.jpg"],
       description: "Video boards drawn for Red Bull's \"Boston's Got Wings\" campaign with Rajon Rondo",
     },
     {
