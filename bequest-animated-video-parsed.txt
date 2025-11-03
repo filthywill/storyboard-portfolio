@@ -1,0 +1,19 @@
+BEQUEST ANIMATED VIDEO
+
+Based on the extracted content from the .docx file, here is the readable text:
+
+The document appears to be about a "Bequest Animated Video" project. From the XML structure and content fragments I can identify, this seems to be a project brief or specification document.
+
+Key elements that can be extracted:
+- Title: "Bequest Animated Video"
+- This appears to be a project document containing specifications or requirements
+- The document structure suggests it may contain sections on project details, requirements, or creative brief
+
+Note: The original .docx file appears to have some formatting issues or corruption that makes it difficult to extract the complete readable content. The XML structure is present but the text content is fragmented and mixed with formatting codes.
+
+To get the complete readable content, you may want to:
+1. Try opening the file in Microsoft Word and saving it as a plain text file
+2. Use a different document conversion tool
+3. Check if you have a backup or original version of the document
+
+If you can provide the document in a different format (like .txt, .rtf, or a properly formatted .docx), I can help parse it more effectively.

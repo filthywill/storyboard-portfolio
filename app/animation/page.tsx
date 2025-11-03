@@ -158,8 +158,8 @@ export default function AnimationPage() {
     {
       title: "Surface Pro",
       category: "Motion Graphics",
-      image: "https://vumbnail.com/102261960.jpg?v=" + Date.now(),
-      images: ["https://vumbnail.com/102261960.jpg?v=" + Date.now()],
+      image: "/portfolio/surface-pro-thumb.jpg",
+      images: ["/portfolio/surface-pro-thumb.jpg"],
       previewVideo: "/videos/surface-pro-preview.mp4",
       video: "https://player.vimeo.com/video/102261960?badge=0&autopause=0&player_id=0&app_id=58479",
              description: "Promotional video designed and animated for internal use."},

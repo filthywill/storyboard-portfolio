@@ -95,7 +95,21 @@ export default function AboutPage() {
               Artist and Motion Designer
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Storyboard Design 〡 Motion Graphics 〡 Animation Production 〡 Visual Effects
+              <Link href="/storyboards" className="hover:text-primary transition-colors underline-offset-4 hover:underline">
+                Storyboard Design
+              </Link>
+              {" 〡 "}
+              <Link href="/animation#motion-graphics" className="hover:text-primary transition-colors underline-offset-4 hover:underline">
+                Motion Graphics
+              </Link>
+              {" 〡 "}
+              <Link href="/animation#2d-animation" className="hover:text-primary transition-colors underline-offset-4 hover:underline">
+                Animation Production
+              </Link>
+              {" 〡 "}
+              <Link href="/animation#visual-effects" className="hover:text-primary transition-colors underline-offset-4 hover:underline">
+                Visual Effects
+              </Link>
             </p>
           </div>
         </div>
@@ -103,15 +117,15 @@ export default function AboutPage() {
 
       {/* About Section */}
       <section id="about" className="py-6 bg-muted/80">
-        <div className="container max-w-[1025px] mx-auto px-4">
+        <div className="container max-w-[1025px] mx-auto px-8">
           <div className="grid md:grid-cols-2 gap-6 items-center">
             <div className="space-y-6">
               <div className="space-y-2">
                 
               
                 <p className="text-md text-muted-foreground">
-                  I've had a traditional art background,
-                  with an introduction to digital art using some of the first versions of Photoshop as a kid. While studying animation in college, I developed a passion for 3D animation and visual effects. I love opportunities to evolve as an artist and learn new technology. 
+                I’ve worked with a range of studios and global brands 
+                over the years, helping bring stories and designs to life. Whether I’m drawing up a concept or refining an animation sequence, I enjoy the process and finding creative ways to solve problems. I’m always exploring new ways to push myself and keep growing as an artist. 
                 </p>
               </div>
 
