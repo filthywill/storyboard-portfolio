@@ -258,6 +258,9 @@ export default function StoryboardsPage() {
             <Link href="/animation" className="hover:text-primary transition-colors">
               Animation
             </Link>
+            <Link href="/editing" className="hover:text-primary transition-colors">
+              Editing
+            </Link>
             <Link href="/about" className="hover:text-primary transition-colors">
               About
             </Link>
@@ -289,6 +292,13 @@ export default function StoryboardsPage() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Animation
+              </Link>
+              <Link
+                href="/editing"
+                className="hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Editing
               </Link>
               <Link
                 href="/about"
@@ -323,7 +333,7 @@ export default function StoryboardsPage() {
                 </h1>
                 <p className="text-xl">Helping studios and brands communicate their vision through drawings.</p>
                 <p className="text-md text-muted-foreground">
-                With a history in the film and animation industry, I'm familiar with production flows and have a strong understanding of film language. My experience has ranged from entertainment to commercial advertising.</p>
+                With a background in the film and animation industry, I bring a strong understanding of production workflows and film language to every storyboard. My experience spans both entertainment and commercial advertising, allowing me to adapt quickly to different creative and production needs.</p>
               </div>
 
               <div>

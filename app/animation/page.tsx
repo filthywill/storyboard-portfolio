@@ -369,6 +369,9 @@ export default function AnimationPage() {
             <Link href="/animation" className="hover:text-primary transition-colors">
               Animation
             </Link>
+            <Link href="/editing" className="hover:text-primary transition-colors">
+              Editing
+            </Link>
             <Link href="/about" className="hover:text-primary transition-colors">
               About
             </Link>
@@ -402,6 +405,13 @@ export default function AnimationPage() {
                 Animation
               </Link>
               <Link
+                href="/editing"
+                className="hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Editing
+              </Link>
+              <Link
                 href="/about"
                 className="hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
@@ -432,9 +442,9 @@ export default function AnimationPage() {
                 <h1 className="text-4xl md:text-4xl font-bold tracking-tight">
                   Bringing Ideas to <span className="text-primary">Life</span>
                 </h1>
-                <p className="text-xl">Telling stories through art and technology</p>
+                <p className="text-xl">Telling stories through art and design.</p>
                 <p className="text-md text-muted-foreground">
-                I specialize in both 2D & 3D production, with experience working on projects ranging from character animation and motion graphics design, to visual effects for film. Over the years I've had the pleasure of collaborating with some of the largest brands and talented studios to create everything from music videos to advertisements.  
+                I work across both 2D and 3D animation, with experience ranging from character animation and motion graphics to visual effects for film. Over the years, I’ve collaborated with talented studios and globally recognized brands to create everything from music videos to advertising campaigns.  
                 </p>
               </div>
 

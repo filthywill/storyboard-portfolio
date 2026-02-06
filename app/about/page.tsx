@@ -35,6 +35,9 @@ export default function AboutPage() {
             <Link href="/animation" className="hover:text-primary transition-colors">
               Animation
             </Link>
+            <Link href="/editing" className="hover:text-primary transition-colors">
+              Editing
+            </Link>
             <Link href="/about" className="hover:text-primary transition-colors">
               About
             </Link>
@@ -66,6 +69,13 @@ export default function AboutPage() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Animation
+              </Link>
+              <Link
+                href="/editing"
+                className="hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Editing
               </Link>
               <Link
                 href="/about"
