@@ -395,7 +395,7 @@ export default function EditingPage() {
                   </div>
                   <CardHeader className="p-3 md:p-4">
                     <CardTitle className="group-hover:text-primary transition-colors text-lg">{item.title}</CardTitle>
-                    <CardDescription className="text-xs">{item.description}</CardDescription>
+                    <CardDescription className="text-xs leading-snug">{item.description}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}
@@ -451,12 +451,12 @@ export default function EditingPage() {
                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                   </div>
-                  <CardHeader className="p-4 md:p-5">
+                  <CardHeader className="p-3 md:p-4">
                     <div className="flex items-center justify-between hidden">
                       <Badge variant="secondary">{item.category}</Badge>
                     </div>
                     <CardTitle className="group-hover:text-primary transition-colors text-lg">{item.title}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
+                    <CardDescription className="text-xs leading-snug">{item.description}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}
@@ -512,12 +512,12 @@ export default function EditingPage() {
                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                   </div>
-                  <CardHeader className="p-4 md:p-5">
+                  <CardHeader className="p-3 md:p-4">
                     <div className="flex items-center justify-between hidden">
                       <Badge variant="secondary">{item.category}</Badge>
                     </div>
                     <CardTitle className="group-hover:text-primary transition-colors text-lg">{item.title}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
+                    <CardDescription className="text-xs leading-snug">{item.description}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}
@@ -573,12 +573,12 @@ export default function EditingPage() {
                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                   </div>
-                  <CardHeader className="p-4 md:p-5">
+                  <CardHeader className="p-3 md:p-4">
                     <div className="flex items-center justify-between hidden">
                       <Badge variant="secondary">{item.category}</Badge>
                     </div>
                     <CardTitle className="group-hover:text-primary transition-colors text-lg">{item.title}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
+                    <CardDescription className="text-xs leading-snug">{item.description}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}
