@@ -426,10 +426,7 @@ export default function AnimationPage() {
              <section id="portfolio" className="pt-4 pb-2">
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
-            <div className="text-center space-y-2 mb-6 mt-2">
-
-              <h2 className="text-2xl md:text-3xl font-bold">Featured Animations</h2>
-            </div>
+            
 
                                                                 <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
                {[animationItems[0], animationItems[4], animationItems[2]].map((item, index) => (

@@ -149,6 +149,18 @@ export default function StoryboardsPage() {
       description: "",
       hoverText: "A video developed with MORE Advertising, promoting the Found Money government program.",
     },
+    {
+      title: "Diebold Nixdorf",
+      category: "Motion Graphics",
+      image: "/portfolio/DN_p01.jpg",
+      images: [
+        "/portfolio/DN_p01.jpg",
+        "/portfolio/DN_p02.jpg",
+        "/portfolio/DN_p03.jpg",
+      ],
+      description: "",
+      hoverText: "A video to promote Diebold Nixdorf's Vynamic Retail Platform.",
+    },
   ]
 
   const filmItems = portfolioItems.filter((item) => item.category === "Film")
