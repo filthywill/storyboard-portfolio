@@ -3,16 +3,12 @@
 import type React from "react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { SectionHeaderBadge } from "@/components/section-header-badge"
 import { Separator } from "@/components/ui/separator"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import {
-  Mail,
-  Phone,
-  MapPin,
   Download,
   Play,
   Tv,
@@ -27,19 +23,6 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useRef } from "react"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { toast } from "sonner"
-
-const formSchema = z.object({
-  firstName: z.string().min(1, { message: "First name is required." }),
-  lastName: z.string().min(1, { message: "Last name is required." }),
-  email: z.string().email({ message: "Please enter a valid email." }),
-  projectType: z.string().min(1, { message: "Project type is required." }),
-  details: z.string().min(1, { message: "Please provide some project details." }),
-})
 
 export default function EditingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -49,38 +32,6 @@ export default function EditingPage() {
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
   const modalRef = useRef<HTMLDivElement>(null)
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      projectType: "",
-      details: "",
-    },
-  })
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const response = await fetch("/api/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      })
-
-      if (!response.ok) {
-        throw new Error("Something went wrong. Please try again.")
-      }
-
-      toast.success("Message sent successfully! I'll get back to you soon.")
-      form.reset()
-    } catch (error: any) {
-      toast.error(error.message)
-    }
-  }
 
   const editingItems = [
     {
@@ -351,9 +302,7 @@ export default function EditingPage() {
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
             <div className="text-center space-y-2 mb-4 mt-0">
-              <Badge variant="outline" className="px-4 py-1 text-xl">
-                Documentary
-              </Badge>
+              <SectionHeaderBadge>Documentary</SectionHeaderBadge>
             </div>
 
             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -409,9 +358,7 @@ export default function EditingPage() {
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
             <div className="text-center space-y-2 mb-4 mt-0">
-              <Badge variant="outline" className="px-4 py-1 text-xl">
-                Corporate
-              </Badge>
+              <SectionHeaderBadge>Corporate</SectionHeaderBadge>
             </div>
 
             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -470,9 +417,7 @@ export default function EditingPage() {
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
             <div className="text-center space-y-2 mb-4 mt-0">
-              <Badge variant="outline" className="px-4 py-1 text-xl">
-                Advertising
-              </Badge>
+              <SectionHeaderBadge>Advertising</SectionHeaderBadge>
             </div>
 
             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
@@ -721,146 +666,6 @@ export default function EditingPage() {
           </div>
         </div>
       )}
-
-      {/* Contact Section */}
-      <section id="contact" className="py-10 bg-muted/50">
-        <div className="container max-w-[1025px] mx-auto px-4">
-          <div className="text-center space-y-4 mb-10">
-            <Badge variant="outline">Contact</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Email</div>
-                    <div className="text-muted-foreground">wsamatis@gmail.com</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Phone</div>
-                    <div className="text-muted-foreground">+1 (781) 983-7173</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <MapPin className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Location</div>
-                    <div className="text-muted-foreground">Boston, MA</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Start Your Editing Project</CardTitle>
-                <CardDescription>
-                  For more information about video editing services, reach out directly or submit the form below and I'll get back to you within 24
-                  hours.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="firstName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>First Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="John" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="lastName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Last Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Doe" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="john@example.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="projectType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Project Type</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Documentary, Corporate, Advertising, etc." {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="details"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Project Details</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Tell me about your editing project, timeline, and any specific requirements..."
-                              className="min-h-[120px]"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <Button type="submit" className="w-full" size="lg" disabled={form.formState.isSubmitting}>
-                      {form.formState.isSubmitting ? "Sending..." : "Send Message"}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </form>
-                </Form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
     </div>
   )

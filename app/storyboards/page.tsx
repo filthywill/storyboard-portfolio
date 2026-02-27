@@ -3,23 +3,23 @@
 import type React from "react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { Separator } from "@/components/ui/separator"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import {
-  Mail,
-  Phone,
-  MapPin,
   Download,
   Play,
   Tv,
   Gamepad2,
   Star,
   Quote,
-  ArrowRight,
   Menu,
   X,
   ChevronLeft,
@@ -29,19 +29,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState, useRef } from "react"
 import StoryboardSlideshow from "@/components/storyboard-slideshow"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { toast } from "sonner"
-
-const formSchema = z.object({
-  firstName: z.string().min(1, { message: "First name is required." }),
-  lastName: z.string().min(1, { message: "Last name is required." }),
-  email: z.string().email({ message: "Please enter a valid email." }),
-  projectType: z.string().min(1, { message: "Project type is required." }),
-  details: z.string().min(1, { message: "Please provide some project details." }),
-})
+import { SectionHeaderBadge } from "@/components/section-header-badge"
 
 export default function StoryboardsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -51,52 +39,22 @@ export default function StoryboardsPage() {
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      projectType: "",
-      details: "",
-    },
-  })
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const response = await fetch("/api/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      })
-
-      if (!response.ok) {
-        throw new Error("Something went wrong. Please try again.")
-      }
-
-      toast.success("Message sent successfully! I'll get back to you soon.")
-      form.reset()
-    } catch (error: any) {
-      toast.error(error.message)
-    }
-  }
-
   const portfolioItems = [
     {
-      title: "Red Bull BGW",
+      title: "Red Bull - BGW",
       category: "Film",
       image: "/portfolio/BGW_panels_final_web.jpg",
       images: ["/portfolio/BGW_panels_final_web.jpg"],
-      description: "Video boards drawn for Red Bull's \"Boston's Got Wings\" campaign with Rajon Rondo",
+      description: "",
+      hoverText: "Red Bull's \"Boston's Got Wings\" campaign with Rajon Rondo",
     },
     {
-      title: "Reebok Boxing",
-      category: "Advertising",
+      title: "Reebok - Boxing",
+      category: "Film",
       image: "/portfolio/gearing-up.jpg",
       images: ["/portfolio/gearing-up.jpg", "/portfolio/gearing-up-page2.jpg"],
-      description: "Concept boards for Reebok, created as part of a series of short films used in product promotion",
+      description: "",
+      hoverText: "Concept boards for Reebok, created as part of a series of short films used in product promotion",
     },
     {
       title: "Necro - Gore",
@@ -104,18 +62,28 @@ export default function StoryboardsPage() {
       image: "/portfolio/necro-gore.jpg",
       images: ["/portfolio/necro-gore.jpg"],
       description:
-        "Designed, directed, and animated the music video for Gore, a hip-hop track released by music artist Necro",
+        "",
+      hoverText: "The animated music video for Gore by music artist Necro",
     },
     {
       title: "Subway - Finding Dory",
-      category: "Advertising",
+      category: "Film",
       image: "/portfolio/subway-p1.png",
       images: ["/portfolio/subway-p1.png", "/portfolio/subway-p2.png"],
-      description: "Director boards for a Subway spot marketing their Finding Dory toys promotion",
+      description: "",
+      hoverText: "Director boards for a Subway commercial promoting their Finding Dory special",
     },
     {
-      title: "CRI Explainer",
-      category: "Animation",
+      title: "Red Bull - Creation",
+      category: "Film",
+      image: "/portfolio/RB-creations-th.jpg",
+      images: ["/portfolio/RB-creations-00.jpg"],
+      description: "",
+      hoverText: "Concept boards for Red Bull's Creation series, featuring maker's from around the US",
+    },
+    {
+      title: "Cancer Research Institute",
+      category: "Motion Graphics",
       image: "/portfolio/cri-1.png",
       images: [
         "/portfolio/cri-1.png",
@@ -125,16 +93,67 @@ export default function StoryboardsPage() {
         "/portfolio/cri-5.png",
         "/portfolio/cri-6.png",
       ],
-      description: "Drawn and animated for the Cancer Research Institute as an informational demo video",
+      description: "",
+      hoverText: "Drawn and animated for the Cancer Research Institute as an informational demo video",
     },
     {
-      title: "Red Bull Creation",
-      category: "Film",
-      image: "/portfolio/RB-creations-00.jpg",
-      images: ["/portfolio/RB-creations-00.jpg"],
-      description: "Concept boards for Red Bull's Creation series, featuring maker's from around the US",
+      title: "Andover Innovation",
+      category: "Motion Graphics",
+      image: "/portfolio/Andover_th.jpg",
+      images: [
+        "/portfolio/Andover_p01.jpg",
+        "/portfolio/Andover_p02.jpg",
+        "/portfolio/Andover_p03.jpg",
+        "/portfolio/Andover_p04.jpg",
+      ],
+      description: "",
+      hoverText: "Designed and animated as a marketing piece for The Andover Companies",
+    },
+    {
+      title: "Beacon Mutual",
+      category: "Animation",
+      image: "/portfolio/BeaQuick_th.jpg",
+      images: [
+        "/portfolio/BeaQuick_01.jpg",
+        "/portfolio/BeaQuick_02.jpg",
+        "/portfolio/BeaQuick_03.jpg",
+        "/portfolio/BeaQuick_04.jpg",
+      ],
+      description: "",
+      hoverText: "Promoting Beacon Mutual Insurance's BeaQuick platform",
+    },
+    {
+      title: "Northeastern University",
+      category: "Animation",
+      image: "/portfolio/NEU_th.jpg",
+      images: [
+        "/portfolio/NEU_02.jpg",
+        "/portfolio/NEU_03.jpg",
+        "/portfolio/NEU_04.jpg",
+        "/portfolio/NEU_05.jpg",
+        "/portfolio/NEU_06.jpg",
+        "/portfolio/NEU_07.jpg",
+        "/portfolio/NEU_08.jpg",
+      ],
+      description: "",
+      hoverText: "An internal film and animation piece promoting harassment awareness",
+    },
+    {
+      title: "Found Money",
+      category: "Animation",
+      image: "/portfolio/FoundMoney_01.jpg",
+      images: [
+        "/portfolio/FoundMoney_01.jpg",
+        "/portfolio/FoundMoney_02.jpg",
+      ],
+      description: "",
+      hoverText: "A video developed with MORE Advertising, promoting the Found Money government program.",
     },
   ]
+
+  const filmItems = portfolioItems.filter((item) => item.category === "Film")
+  const animationItems = portfolioItems.filter((item) => item.category === "Animation")
+  const motionGraphicsItems = portfolioItems.filter((item) => item.category === "Motion Graphics")
 
   const services = [
     {
@@ -335,15 +354,6 @@ export default function StoryboardsPage() {
                 <p className="text-md text-muted-foreground">
                 With a background in the film and animation industry, I bring a strong understanding of production workflows and film language to every storyboard. My experience spans both entertainment and commercial advertising, allowing me to adapt quickly to different creative and production needs.</p>
               </div>
-
-              <div>
-                <Button size="lg" className="text-lg px-8" asChild>
-                  <Link href="#contact">
-                    Get In Touch
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
             </div>
 
             <StoryboardSlideshow />
@@ -351,62 +361,161 @@ export default function StoryboardsPage() {
         </div>
       </section>
 
-      {/* Portfolio Section */}
-      <section id="portfolio" className="pt-8 pb-12">
-        <div className="container max-w-[1025px] mx-auto px-4">
-          <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
-            <div className="text-center space-y-2 mb-6 mt-2">
-            
-              <h2 className="text-3xl md:text-4xl font-bold">Featured Projects</h2>
+      {/* Portfolio Section - Film */}
+      {filmItems.length > 0 && (
+        <section id="portfolio-film" className="pt-4 pb-2">
+          <div className="container max-w-[1025px] mx-auto px-4">
+            <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
+              <div className="text-center space-y-2 mb-4 mt-0">
+                <SectionHeaderBadge>Film</SectionHeaderBadge>
+              </div>
+              <TooltipProvider delayDuration={300}>
+                <div className="grid grid-cols-1 min-[525px]:grid-cols-2 min-[685px]:grid-cols-3 min-[900px]:grid-cols-4 gap-3">
+                  {filmItems.map((item, index) => (
+                    <Tooltip key={item.title}>
+                      <TooltipTrigger asChild>
+                        <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                          <div
+                            className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
+                            onClick={() => openModal(item)}
+                          >
+                            <Image
+                                src={item.image || "/placeholder.svg"}
+                                alt={item.title}
+                                width={400}
+                                height={300}
+                                className="w-full h-full object-cover object-center scale-150 group-hover:scale-[1.65] transition-transform duration-300"
+                                priority={index < 2}
+                                loading={index < 2 ? "eager" : "lazy"}
+                                quality={85}
+                                sizes="(max-width: 525px) 100vw, (max-width: 768px) 50vw, 33vw"
+                                placeholder="blur"
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                              />
+                            </div>
+                            <CardHeader className="px-3 pt-2 pb-2 md:px-3 md:pt-2.5 md:pb-2.5">
+                              <CardTitle className="group-hover:text-primary transition-colors text-base">
+                                {item.title}
+                              </CardTitle>
+                              <CardDescription>{item.description}</CardDescription>
+                            </CardHeader>
+                          </Card>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="max-w-[280px] whitespace-normal text-left px-3 py-2.5">
+                          {item.hoverText}
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                </div>
+              </TooltipProvider>
             </div>
+          </div>
+        </section>
+      )}
 
-            <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-8">
-              {portfolioItems.map((item, index) => (
-                <Card key={index} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
-                  <div
-                    className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
-                    onClick={() => openModal(item)}
-                  >
-                    <Image
-                      src={item.image || "/placeholder.svg"}
-                      alt={item.title}
-                      width={400}
-                      height={300}
-                      className={
-                        index === 0 || index === 1 || index === 2 || index === 3 || index === 4 || index === 5
-                          ? "w-full h-full object-cover object-center scale-150 group-hover:scale-[1.65] transition-transform duration-300"
-                          : "w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      }
-                      priority={index < 3}
-                      loading={index < 3 ? "eager" : "lazy"}
-                      quality={85}
-                      sizes="(max-width: 525px) 100vw, (max-width: 768px) 50vw, 33vw"
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    />
-                  </div>
-                  <CardHeader className="p-4 md:p-5">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary">{item.category}</Badge>
-                    </div>
-                    <CardTitle className="group-hover:text-primary transition-colors text-xl
-                  ">{item.title}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
+      {/* Portfolio Section - Animation */}
+      {animationItems.length > 0 && (
+        <section id="portfolio-animation" className="pt-0 pb-2">
+          <div className="container max-w-[1025px] mx-auto px-4">
+            <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
+              <div className="text-center space-y-2 mb-4 mt-0">
+                <SectionHeaderBadge>Animation</SectionHeaderBadge>
+              </div>
+              <TooltipProvider delayDuration={300}>
+                <div className="grid grid-cols-1 min-[525px]:grid-cols-2 min-[685px]:grid-cols-3 min-[900px]:grid-cols-4 gap-3">
+                  {animationItems.map((item, index) => (
+                    <Tooltip key={item.title}>
+                      <TooltipTrigger asChild>
+                        <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                          <div
+                            className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
+                            onClick={() => openModal(item)}
+                          >
+                            <Image
+                                src={item.image || "/placeholder.svg"}
+                                alt={item.title}
+                                width={400}
+                                height={300}
+                                className="w-full h-full object-cover object-center scale-150 group-hover:scale-[1.65] transition-transform duration-300"
+                                priority={index < 2}
+                                loading={index < 2 ? "eager" : "lazy"}
+                                quality={85}
+                                sizes="(max-width: 525px) 100vw, (max-width: 768px) 50vw, 33vw"
+                                placeholder="blur"
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                              />
+                            </div>
+                            <CardHeader className="px-3 pt-2 pb-2 md:px-3 md:pt-2.5 md:pb-2.5">
+                              <CardTitle className="group-hover:text-primary transition-colors text-base">
+                                {item.title}
+                              </CardTitle>
+                              <CardDescription>{item.description}</CardDescription>
+                            </CardHeader>
+                          </Card>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="max-w-[280px] whitespace-normal text-left px-3 py-2.5">
+                          {item.hoverText}
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                </div>
+              </TooltipProvider>
             </div>
-{/*}
-            <div className="text-center mt-6">
-              <Button size="lg" variant="outline">
-                View Complete Storyboard Portfolio
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+          </div>
+        </section>
+      )}
+
+      {/* Portfolio Section - Motion Graphics */}
+      {motionGraphicsItems.length > 0 && (
+        <section id="portfolio-motion-graphics" className="pt-0 pb-12">
+          <div className="container max-w-[1025px] mx-auto px-4">
+            <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
+              <div className="text-center space-y-2 mb-4 mt-0">
+                <SectionHeaderBadge>Motion Graphics</SectionHeaderBadge>
+              </div>
+              <TooltipProvider delayDuration={300}>
+                <div className="grid grid-cols-1 min-[525px]:grid-cols-2 min-[685px]:grid-cols-3 min-[900px]:grid-cols-4 gap-3">
+                  {motionGraphicsItems.map((item, index) => (
+                    <Tooltip key={item.title}>
+                      <TooltipTrigger asChild>
+                        <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                          <div
+                            className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
+                            onClick={() => openModal(item)}
+                          >
+                            <Image
+                                src={item.image || "/placeholder.svg"}
+                                alt={item.title}
+                                width={400}
+                                height={300}
+                                className="w-full h-full object-cover object-center scale-150 group-hover:scale-[1.65] transition-transform duration-300"
+                                priority={index < 2}
+                                loading={index < 2 ? "eager" : "lazy"}
+                                quality={85}
+                                sizes="(max-width: 525px) 100vw, (max-width: 768px) 50vw, 33vw"
+                                placeholder="blur"
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                              />
+                            </div>
+                            <CardHeader className="px-3 pt-2 pb-2 md:px-3 md:pt-2.5 md:pb-2.5">
+                              <CardTitle className="group-hover:text-primary transition-colors text-base">
+                                {item.title}
+                              </CardTitle>
+                              <CardDescription>{item.description}</CardDescription>
+                            </CardHeader>
+                          </Card>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="max-w-[280px] whitespace-normal text-left px-3 py-2.5">
+                          {item.hoverText}
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                </div>
+              </TooltipProvider>
             </div>
-*/}
-            </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* Enhanced Image Modal with Touch Support */}
       {selectedProject && (
@@ -528,146 +637,6 @@ export default function StoryboardsPage() {
           </div>
         </div>
       )}
-
-      {/* Contact Section */}
-      <section id="contact" className="py-10 bg-muted/50">
-        <div className="container max-w-[1025px] mx-auto px-4">
-          <div className="text-center space-y-4 mb-10">
-            <Badge variant="outline">Contact</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Email</div>
-                    <div className="text-muted-foreground">wsamatis@gmail.com</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Phone</div>
-                    <div className="text-muted-foreground">+1 (781) 983-7173</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <MapPin className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Location</div>
-                    <div className="text-muted-foreground">Boston, MA</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Start Your Storyboard Project</CardTitle>
-                <CardDescription>
-                  For more information about storyboard services, reach out directly or submit the form below and I'll get back to you within 24
-                  hours.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="firstName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>First Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="John" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="lastName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Last Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Doe" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="john@example.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="projectType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Project Type</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Storyboard, Animation, etc." {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="details"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Project Details</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Tell me about your storyboard project, timeline, and any specific requirements..."
-                              className="min-h-[120px]"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <Button type="submit" className="w-full" size="lg" disabled={form.formState.isSubmitting}>
-                      {form.formState.isSubmitting ? "Sending..." : "Send Message"}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </form>
-                </Form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
     </div>
   )

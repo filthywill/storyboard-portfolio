@@ -140,7 +140,6 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold">My Expertise</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <h4 className="font-medium">Technical Skills</h4>
@@ -183,10 +182,6 @@ export default function AboutPage() {
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="text-center space-y-2 mb-6">
             <Badge variant="outline">Contact</Badge>
-            <h2 className="text-2xl md:text-3xl font-bold">Get In Touch</h2>
-            <p className="text-base text-muted-foreground max-w-xl mx-auto">
-              Let's discuss how I can help bring your vision to life.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
