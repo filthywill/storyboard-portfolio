@@ -15,7 +15,10 @@ export function SectionHeaderBadge({
   return (
     <Badge
       variant="outline"
-      className={cn("px-3 py-0.5 text-base", className)}
+      className={cn(
+        "px-3 py-0.5 text-sm rounded-md border-transparent bg-neutral-800 text-white dark:bg-neutral-100 dark:text-neutral-900",
+        className
+      )}
       {...props}
     >
       {children}

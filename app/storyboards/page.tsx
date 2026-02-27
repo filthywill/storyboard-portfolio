@@ -382,11 +382,13 @@ export default function StoryboardsPage() {
                 <SectionHeaderBadge>Film</SectionHeaderBadge>
               </div>
               <TooltipProvider delayDuration={300}>
-                <div className="grid grid-cols-1 min-[525px]:grid-cols-2 min-[685px]:grid-cols-3 min-[900px]:grid-cols-4 gap-3">
-                  {filmItems.map((item, index) => (
+                <div className={`grid gap-3 grid-cols-1 min-[475px]:grid-cols-2 ${filmItems.length > 3 ? "min-[768px]:grid-cols-4" : "min-[685px]:grid-cols-3"}`}>
+                  {filmItems.map((item, index) => {
+                    const shouldSpanLast = filmItems.length % 2 === 1;
+                    return (
                     <Tooltip key={item.title}>
                       <TooltipTrigger asChild>
-                        <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                        <Card className={`group overflow-hidden hover:shadow-lg transition-all duration-300 ${shouldSpanLast && index === filmItems.length - 1 ? "min-[475px]:col-span-2 min-[475px]:justify-self-center min-[475px]:w-full min-[475px]:max-w-[520px] min-[685px]:col-span-1 min-[685px]:justify-self-auto min-[685px]:max-w-none" : ""}`}>
                           <div
                             className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
                             onClick={() => openModal(item)}
@@ -417,7 +419,8 @@ export default function StoryboardsPage() {
                           {item.hoverText}
                         </TooltipContent>
                       </Tooltip>
-                    ))}
+                    );
+                  })}
                 </div>
               </TooltipProvider>
             </div>
@@ -434,11 +437,13 @@ export default function StoryboardsPage() {
                 <SectionHeaderBadge>Animation</SectionHeaderBadge>
               </div>
               <TooltipProvider delayDuration={300}>
-                <div className="grid grid-cols-1 min-[525px]:grid-cols-2 min-[685px]:grid-cols-3 min-[900px]:grid-cols-4 gap-3">
-                  {animationItems.map((item, index) => (
+                <div className={`grid gap-3 grid-cols-1 min-[475px]:grid-cols-2 ${animationItems.length > 3 ? "min-[768px]:grid-cols-4" : "min-[685px]:grid-cols-3"}`}>
+                  {animationItems.map((item, index) => {
+                    const shouldSpanLast = animationItems.length % 2 === 1;
+                    return (
                     <Tooltip key={item.title}>
                       <TooltipTrigger asChild>
-                        <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                        <Card className={`group overflow-hidden hover:shadow-lg transition-all duration-300 ${shouldSpanLast && index === animationItems.length - 1 ? "min-[475px]:col-span-2 min-[475px]:justify-self-center min-[475px]:w-full min-[475px]:max-w-[520px] min-[685px]:col-span-1 min-[685px]:justify-self-auto min-[685px]:max-w-none" : ""}`}>
                           <div
                             className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
                             onClick={() => openModal(item)}
@@ -469,7 +474,8 @@ export default function StoryboardsPage() {
                           {item.hoverText}
                         </TooltipContent>
                       </Tooltip>
-                    ))}
+                    );
+                  })}
                 </div>
               </TooltipProvider>
             </div>
@@ -486,11 +492,13 @@ export default function StoryboardsPage() {
                 <SectionHeaderBadge>Motion Graphics</SectionHeaderBadge>
               </div>
               <TooltipProvider delayDuration={300}>
-                <div className="grid grid-cols-1 min-[525px]:grid-cols-2 min-[685px]:grid-cols-3 min-[900px]:grid-cols-4 gap-3">
-                  {motionGraphicsItems.map((item, index) => (
+                <div className={`grid gap-3 grid-cols-1 min-[475px]:grid-cols-2 ${motionGraphicsItems.length > 3 ? "min-[768px]:grid-cols-4" : "min-[685px]:grid-cols-3"}`}>
+                  {motionGraphicsItems.map((item, index) => {
+                    const shouldSpanLast = motionGraphicsItems.length % 2 === 1;
+                    return (
                     <Tooltip key={item.title}>
                       <TooltipTrigger asChild>
-                        <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                        <Card className={`group overflow-hidden hover:shadow-lg transition-all duration-300 ${shouldSpanLast && index === motionGraphicsItems.length - 1 ? "min-[475px]:col-span-2 min-[475px]:justify-self-center min-[475px]:w-full min-[475px]:max-w-[420px] min-[685px]:col-span-1 min-[685px]:justify-self-auto min-[685px]:max-w-none" : ""}`}>
                           <div
                             className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
                             onClick={() => openModal(item)}
@@ -521,7 +529,8 @@ export default function StoryboardsPage() {
                           {item.hoverText}
                         </TooltipContent>
                       </Tooltip>
-                    ))}
+                    );
+                  })}
                 </div>
               </TooltipProvider>
             </div>

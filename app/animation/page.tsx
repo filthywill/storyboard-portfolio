@@ -428,11 +428,21 @@ export default function AnimationPage() {
           <div className="bg-muted/80 rounded-3xl p-4 md:p-6 border border-muted/30">
             
 
-                                                                <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
+                                                                <div className="grid grid-cols-1 min-[475px]:grid-cols-2 min-[685px]:grid-cols-3 gap-4">
                {[animationItems[0], animationItems[4], animationItems[2]].map((item, index) => (
-                 <Card key={index} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                 <div
+                   key={index}
+                   className={
+                     index === 2
+                       ? "min-[475px]:max-[684px]:col-span-2 min-[475px]:max-[684px]:flex min-[475px]:max-[684px]:justify-center"
+                       : "h-full"
+                   }
+                 >
+                   <Card
+                     className={`group overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col ${index === 2 ? "min-[475px]:max-[684px]:w-full min-[475px]:max-[684px]:max-w-[480px]" : ""}`}
+                   >
                    <div
-                     className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
+                     className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative flex-shrink-0"
                      onClick={() => openModal(item)}
                      onMouseEnter={() => setHoveredProject(item.title)}
                      onMouseLeave={() => setHoveredProject(null)}
@@ -465,15 +475,16 @@ export default function AnimationPage() {
                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                      />
                    </div>
-                  <CardHeader className="p-4 md:p-5">
+                  <CardHeader className="p-4 md:p-5 flex-1 flex flex-col min-h-0">
                     <div className="flex items-center justify-between">
                       <Badge variant="secondary">{item.category}</Badge>
                     </div>
                     <CardTitle className="group-hover:text-primary transition-colors text-xl
                   ">{item.title}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
-                  </CardHeader>
-                </Card>
+                    <CardDescription className="flex-1">{item.description}</CardDescription>
+                     </CardHeader>
+                   </Card>
+                 </div>
               ))}
             </div>
 
@@ -491,7 +502,7 @@ export default function AnimationPage() {
             
              </div>
 
-                         <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                         <div className="grid grid-cols-1 min-[475px]:grid-cols-2 min-[768px]:grid-cols-4 gap-4">
                {[animationItems[5], animationItems[7], animationItems[6], animationItems[11]].map((item, index) => (
                  <Card key={index + 3} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                    <div
@@ -547,7 +558,7 @@ export default function AnimationPage() {
                <SectionHeaderBadge>Animated Shorts</SectionHeaderBadge>
              </div>
 
-             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+             <div className="grid grid-cols-1 min-[475px]:grid-cols-2 min-[768px]:grid-cols-4 gap-4">
                {[animationItems[10], animationItems[9], animationItems[8], animationItems[12]].map((item, index) => (
                  <Card key={index + 9} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                    <div
@@ -607,7 +618,7 @@ export default function AnimationPage() {
             
              </div>
 
-                                       <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
+                                       <div className="grid grid-cols-1 min-[475px]:grid-cols-2 gap-4">
                {[animationItems[3], animationItems[1]].map((item, index) => (
                   <Card key={index + 3} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                     <div
@@ -667,7 +678,7 @@ export default function AnimationPage() {
                <SectionHeaderBadge>Logo Animation</SectionHeaderBadge>
              </div>
 
-             <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+             <div className="grid grid-cols-1 min-[475px]:grid-cols-2 min-[768px]:grid-cols-4 gap-4">
                {[animationItems[13], animationItems[14], animationItems[15], animationItems[16]].map((item, index) => (
                  <Card key={index + 16} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                    <div

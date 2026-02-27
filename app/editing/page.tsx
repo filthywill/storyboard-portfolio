@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { SectionHeaderBadge } from "@/components/section-header-badge"
 import { Separator } from "@/components/ui/separator"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { cn } from "@/lib/utils"
 import {
   Download,
   Play,
@@ -116,6 +117,8 @@ export default function EditingPage() {
       description: "Placeholder description for promotional editing project.",
     },
   ]
+
+  const docItems = [editingItems[0], editingItems[1], editingItems[2]]
 
   const services = [
     {
@@ -305,9 +308,17 @@ export default function EditingPage() {
               <SectionHeaderBadge>Documentary</SectionHeaderBadge>
             </div>
 
-            <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {[editingItems[0], editingItems[1], editingItems[2]].map((item, index) => (
-                <Card key={index} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+            <div className={`grid gap-4 grid-cols-1 min-[475px]:grid-cols-2 ${docItems.length > 3 ? "min-[768px]:grid-cols-3" : "min-[685px]:grid-cols-3"}`}>
+              {docItems.map((item, index) => {
+                const isOrphanLast = docItems.length % 2 === 1 && index === docItems.length - 1
+                return (
+                <Card
+                  key={index}
+                  className={cn(
+                    "group overflow-hidden hover:shadow-lg transition-all duration-300",
+                    isOrphanLast && "min-[475px]:max-[684px]:col-span-2 min-[475px]:max-[684px]:justify-self-center min-[475px]:max-[684px]:w-full min-[475px]:max-[684px]:max-w-[520px] min-[685px]:col-span-1"
+                  )}
+                >
                   <div
                     className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
                     onClick={() => openModal(item)}
@@ -347,21 +358,23 @@ export default function EditingPage() {
                     <CardDescription className="text-xs leading-snug">{item.description}</CardDescription>
                   </CardHeader>
                 </Card>
-              ))}
+                )
+              })}
             </div>
           </div>
         </div>
       </section>
 
+      {/* Corporate & Advertising: side-by-side at lg (1024px), each max 2 columns */}
+      <div className="container max-w-[1025px] mx-auto px-4 lg:grid lg:grid-cols-2 lg:gap-6">
       {/* Corporate Section */}
       <section id="corporate" className="pt-0 pb-2">
-        <div className="container max-w-[1025px] mx-auto px-4">
           <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
             <div className="text-center space-y-2 mb-4 mt-0">
               <SectionHeaderBadge>Corporate</SectionHeaderBadge>
             </div>
 
-            <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 min-[475px]:grid-cols-2 gap-4">
               {[editingItems[3], editingItems[4]].map((item, index) => (
                 <Card key={index + 2} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                   <div
@@ -409,18 +422,16 @@ export default function EditingPage() {
               ))}
             </div>
           </div>
-        </div>
       </section>
 
       {/* Advertising Section */}
       <section id="advertising" className="pt-0 pb-2">
-        <div className="container max-w-[1025px] mx-auto px-4">
           <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
             <div className="text-center space-y-2 mb-4 mt-0">
               <SectionHeaderBadge>Advertising</SectionHeaderBadge>
             </div>
 
-            <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 min-[475px]:grid-cols-2 gap-4">
               {[editingItems[5], editingItems[6]].map((item, index) => (
                 <Card key={index + 4} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                   <div
@@ -468,8 +479,8 @@ export default function EditingPage() {
               ))}
             </div>
           </div>
-        </div>
       </section>
+      </div>
 
       {/* Social Media Section - hidden for now */}
       <section id="social-media" className="pt-1 pb-8 hidden">
@@ -481,7 +492,7 @@ export default function EditingPage() {
               </Badge>
             </div>
 
-            <div className="grid grid-cols-1 min-[525px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 min-[475px]:grid-cols-2 min-[685px]:grid-cols-3 min-[768px]:grid-cols-4 gap-4">
               {[editingItems[7], editingItems[8]].map((item, index) => (
                 <Card key={index + 6} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                   <div
