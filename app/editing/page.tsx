@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { SectionHeaderBadge } from "@/components/section-header-badge"
+import { SiteHeader } from "@/components/site-header"
 import { Separator } from "@/components/ui/separator"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { cn } from "@/lib/utils"
 import {
   Download,
@@ -16,17 +16,15 @@ import {
   Film,
   Video,
   ArrowRight,
-  Menu,
-  X,
   ChevronLeft,
   ChevronRight,
+  X,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useRef } from "react"
 
 export default function EditingPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState<any>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [touchStart, setTouchStart] = useState<number | null>(null)
@@ -98,24 +96,13 @@ export default function EditingPage() {
       video: "https://player.vimeo.com/video/1162593876?badge=0&autopause=0&player_id=0&app_id=58479",
       description: "General brand local AD for TCB.",
     },
-    {
-      title: "Project Seven",
-      category: "Social Media",
-      image: "/placeholder.svg",
-      images: ["/placeholder.svg"],
-      previewVideo: undefined,
-      video: undefined,
-      description: "Placeholder description for promotional editing project.",
-    },
-    {
-      title: "Project Eight",
-      category: "Social Media",
-      image: "/placeholder.svg",
-      images: ["/placeholder.svg"],
-      previewVideo: undefined,
-      video: undefined,
-      description: "Placeholder description for promotional editing project.",
-    },
+  ]
+
+  const socialMediaItems = [
+    { title: "Gregg's", video: "/videos/social/BEM-Desserts_01.mp4", thumbnail: "/videos/social/BEM-Desserts_01_P.mp4" },
+    { title: "Boston Mutual", video: "/videos/social/BMU-Holidays_01.mp4", thumbnail: "/videos/social/BMU-Holidays_01_P.mp4" },
+    { title: "Midrex", video: "/videos/social/MRX-Maria-01.mp4", thumbnail: "/videos/social/MRX-Maria-01_P.mp4" },
+    { title: "PriMed", video: "/videos/social/PRM-South_01.mp4", thumbnail: "/videos/social/PRM-South_01_P.mp4" },
   ]
 
   const docItems = [editingItems[0], editingItems[1], editingItems[2]]
@@ -204,82 +191,7 @@ export default function EditingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container max-w-[1025px] mx-auto px-4 flex h-16 items-center justify-between">
-          <Link href="/about" className="flex items-center space-x-2">
-            <Image src="/logo.svg" alt="Will Samatis Logo" width={48} height={48} className="rounded-md" />
-            <span className="font-bold text-xl">Will Samatis</span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-            <Link href="/storyboards" className="hover:text-primary transition-colors">
-              Storyboards
-            </Link>
-            <Link href="/animation" className="hover:text-primary transition-colors">
-              Animation
-            </Link>
-            <Link href="/editing" className="hover:text-primary transition-colors">
-              Editing
-            </Link>
-            <Link href="/about" className="hover:text-primary transition-colors">
-              About
-            </Link>
-            <Link href="#contact" className="hover:text-primary transition-colors">
-              Contact
-            </Link>
-            <ThemeToggle />
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
-            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t bg-background">
-            <nav className="flex flex-col space-y-4 p-4">
-              <Link href="/storyboards" className="hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
-                Storyboards
-              </Link>
-              <Link
-                href="/animation"
-                className="hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Animation
-              </Link>
-              <Link
-                href="/editing"
-                className="hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Editing
-              </Link>
-              <Link
-                href="/about"
-                className="hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                href="#contact"
-                className="hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-        )}
-      </header>
+      <SiteHeader />
 
       {/* Hero Section */}
       <section className="relative py-8 md:py-8 pb-4 md:pb-4 overflow-hidden">
@@ -293,7 +205,7 @@ export default function EditingPage() {
             </h1>
             <p className="text-xl" hidden>Where structure, rhythm, and emotion align.</p>
             <p className="text-md md:text-md text-muted-foreground max-w-2xl" style={{ lineHeight: '1.3' }}>
-            My editing approach focuses on clarity and intent, designed to tell stories that land their message effectively. I’ve cut a wide range of work, from documentaries to promotional and advertising pieces for social media, shaping raw footage with an emphasis on pacing, structure, and flow.
+            My editing approach focuses on clarity and intent, designed to tell stories that land their message effectively. I've cut a wide range of work — from documentaries to promotional content and performance-driven ads — shaping raw footage with an emphasis on pacing, structure, and flow.
             </p>
           </div>
         </div>
@@ -482,29 +394,33 @@ export default function EditingPage() {
       </section>
       </div>
 
-      {/* Social Media Section - hidden for now */}
-      <section id="social-media" className="pt-1 pb-8 hidden">
+      {/* Social Media Section */}
+      <section id="social-media" className="pt-1 pb-8">
         <div className="container max-w-[1025px] mx-auto px-4">
           <div className="bg-muted/80 rounded-3xl p-3 md:p-3 border border-muted/30">
             <div className="text-center space-y-2 mb-4 mt-0">
-              <Badge variant="outline" className="px-4 py-1 text-xl">
-                Social Media
-              </Badge>
+              <SectionHeaderBadge>Social Media</SectionHeaderBadge>
             </div>
 
             <div className="grid grid-cols-1 min-[475px]:grid-cols-2 min-[685px]:grid-cols-3 min-[768px]:grid-cols-4 gap-4">
-              {[editingItems[7], editingItems[8]].map((item, index) => (
-                <Card key={index + 6} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+              {socialMediaItems.map((item, index) => (
+                <Card key={item.title} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
                   <div
                     className="aspect-[2/1] md:aspect-[4/3] overflow-hidden cursor-pointer relative"
-                    onClick={() => openModal(item)}
+                    onClick={() =>
+                      openModal({
+                        title: item.title,
+                        images: [item.thumbnail],
+                        video: item.video,
+                      })
+                    }
                     onMouseEnter={() => setHoveredProject(item.title)}
                     onMouseLeave={() => setHoveredProject(null)}
                   >
-                    {/* Video Preview */}
-                    {item.previewVideo && hoveredProject === item.title && (
+                    {/* Video preview - plays and loops on hover (same pattern as other sections) */}
+                    {hoveredProject === item.title && (
                       <video
-                        src={item.previewVideo}
+                        src={item.thumbnail}
                         className="absolute inset-0 w-full h-full object-cover z-10"
                         autoPlay
                         muted
@@ -513,28 +429,17 @@ export default function EditingPage() {
                         preload="metadata"
                       />
                     )}
-                    
-                    {/* Fallback Image */}
-                    <Image
-                      src={item.image || "/placeholder.svg"}
-                      alt={item.title}
-                      width={400}
-                      height={300}
+                    {/* Fallback: thumbnail video paused for first frame */}
+                    <video
+                      src={item.thumbnail}
                       className="w-full h-full object-cover"
-                      priority={index < 3}
-                      loading={index < 3 ? "eager" : "lazy"}
-                      quality={85}
-                      sizes="(max-width: 525px) 100vw, (max-width: 768px) 50vw, 33vw"
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                      muted
+                      playsInline
+                      preload="metadata"
                     />
                   </div>
                   <CardHeader className="p-3 md:p-4">
-                    <div className="flex items-center justify-between hidden">
-                      <Badge variant="secondary">{item.category}</Badge>
-                    </div>
                     <CardTitle className="group-hover:text-primary transition-colors text-lg">{item.title}</CardTitle>
-                    <CardDescription className="text-xs leading-snug">{item.description}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}
@@ -598,13 +503,24 @@ export default function EditingPage() {
             <div className="relative w-full h-full">
               {selectedProject.video ? (
                 <div className="w-full h-full">
-                  <iframe
-                    src={selectedProject.video}
-                    className="w-full h-full"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    title={selectedProject.title}
-                  />
+                  {selectedProject.video.startsWith("/") ? (
+                    <video
+                      src={selectedProject.video}
+                      className="w-full h-full object-contain"
+                      controls
+                      autoPlay
+                      playsInline
+                      title={selectedProject.title}
+                    />
+                  ) : (
+                    <iframe
+                      src={selectedProject.video}
+                      className="w-full h-full"
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      title={selectedProject.title}
+                    />
+                  )}
                 </div>
               ) : (
                 <>
