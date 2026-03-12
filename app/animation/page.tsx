@@ -519,9 +519,6 @@ export default function AnimationPage() {
                      />
                    </div>
                    <CardHeader className="p-4 md:p-5">
-                     <div className="flex items-center justify-between">
-                       <Badge variant="secondary">{item.category}</Badge>
-                     </div>
                      <CardTitle className="group-hover:text-primary transition-colors text-xl">{item.title}</CardTitle>
                      <CardDescription>{item.description}</CardDescription>
                    </CardHeader>
@@ -579,9 +576,6 @@ export default function AnimationPage() {
                       />
                     </div>
                    <CardHeader className="p-4 md:p-5">
-                     <div className="flex items-center justify-between">
-                       <Badge variant="secondary">{item.category}</Badge>
-                     </div>
                      <CardTitle className="group-hover:text-primary transition-colors text-xl
                    ">{item.title}</CardTitle>
                      <CardDescription>{item.description}</CardDescription>
@@ -639,9 +633,6 @@ export default function AnimationPage() {
                      />
                    </div>
                    <CardHeader className="p-4 md:p-5">
-                     <div className="flex items-center justify-between">
-                       <Badge variant="secondary">{item.category}</Badge>
-                     </div>
                      <CardTitle className="group-hover:text-primary transition-colors text-xl">{item.title}</CardTitle>
                      <CardDescription>{item.description}</CardDescription>
                    </CardHeader>

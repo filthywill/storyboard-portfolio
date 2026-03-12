@@ -99,7 +99,7 @@ export default function EditingPage() {
   ]
 
   const socialMediaItems = [
-    { title: "Gregg's", video: "/videos/social/BEM-Desserts_01.mp4", thumbnail: "/videos/social/BEM-Desserts_01_P.mp4" },
+    { title: "Beacon Mutual", video: "/videos/social/BEM-Desserts_01.mp4", thumbnail: "/videos/social/BEM-Desserts_01_P.mp4" },
     { title: "Boston Mutual", video: "/videos/social/BMU-Holidays_01.mp4", thumbnail: "/videos/social/BMU-Holidays_01_P.mp4" },
     { title: "Midrex", video: "/videos/social/MRX-Maria-01.mp4", thumbnail: "/videos/social/MRX-Maria-01_P.mp4" },
     { title: "PriMed", video: "/videos/social/PRM-South_01.mp4", thumbnail: "/videos/social/PRM-South_01_P.mp4" },
