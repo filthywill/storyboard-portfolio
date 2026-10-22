@@ -35,8 +35,8 @@ export default function AboutPage() {
                 Animation Production
               </Link>
               {" 〡 "}
-              <Link href="/animation#visual-effects" className="hover:text-primary transition-colors underline-offset-4 hover:underline">
-                Visual Effects
+              <Link href="/editing" className="hover:text-primary transition-colors underline-offset-4 hover:underline">
+                Video Editing
               </Link>
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function AboutPage() {
               
                 <p className="text-md text-muted-foreground">
                 I’ve worked with a range of studios and global brands 
-                over the years, helping bring stories and designs to life. Whether I’m drawing up a concept or refining an animation sequence, I enjoy the process and finding creative ways to solve problems. I’m always exploring new ways to push myself and keep growing as an artist. 
+                over the years, helping bring stories and designs to life. Whether I’m drawing up a concept or refining an animation sequence, I enjoy the process and finding creative ways to solve problems. I’m always exploring new ways to push myself and keep growing as an artist and editor. 
                 </p>
               </div>
 
@@ -64,8 +64,8 @@ export default function AboutPage() {
                     <ul className="text-sm text-muted-foreground space-y-1">
                       <li>• Illustration & Concept Art</li>
                       <li>• 2D & 3D Animation</li>
+                      <li>• Video Editing</li>
                       <li>• Cinematic composition</li>
-                      <li>• Character design</li>
                     </ul>
                   </div>
                   <div className="space-y-2">
